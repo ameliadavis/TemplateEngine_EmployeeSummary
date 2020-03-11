@@ -158,20 +158,25 @@ function makeDirectory(){
     console.log("all employees" + JSON.stringify(allEmployees))
     let allEmployeesArray= JSON.stringify(allEmployees)
         if(!fs.existsSync(OUTPUT_DIR)){
-            createFile(allEmployeesArray);       
+            //creat Directory
+           const fileHTML = render( allEmployees); 
+           createFile(fileHTML);    
             console.log("the directory exists")
         } else {
-            createFile(JSON.stringify(allEmployees))
+        
+            const fileHTML = render( allEmployees); 
+            createFile(fileHTML); 
+        
         };
 };
 
+
 function createFile(allEmployees){
     console.log("We are in the createFile Function" + allEmployees)
+
     fs.writeFile(outputPath, allEmployees, function(err){
         if (err) throw err; 
     })
 }
 
 newEmployeeSurvey(); // run through survey
-
- // need to put each type of employee in their own function and then the switch statement will call that function instead. 
